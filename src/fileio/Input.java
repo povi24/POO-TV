@@ -7,16 +7,31 @@ public final class Input {
      * This class retrieves information from our input
      */
 
-//    private final ArrayList<UsersInputData> users;
-//    private final ArrayList<MoviesInputData> movies;
-//    private final ArrayList<ActionsInputData> actions;
+    private  ArrayList<UsersInputData> users;
+    private  ArrayList<MoviesInputData> movies;
+    private  ArrayList<ActionsInputData> actions;
 
+    public ArrayList<UsersInputData> getUsers() {
+        return users;
+    }
 
+    public void setUsers(final ArrayList<UsersInputData> users) {
+        this.users = users;
+    }
 
+    public ArrayList<MoviesInputData> getMovies() {
+        return movies;
+    }
 
+    public void setMovies(final ArrayList<MoviesInputData> movies) {
+        this.movies = movies;
+    }
 
+    public ArrayList<ActionsInputData> getActions() {
+        return actions;
+    }
 
-
-
-
+    public void setActions(final ArrayList<ActionsInputData> actions) {
+        this.actions = actions;
+    }
 }
