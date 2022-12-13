@@ -6,6 +6,9 @@ public final class CredentialsInputData {
     private String accountType;
     private  String country;
     private String balance;
+    public CredentialsInputData() {
+
+    }
 
     public CredentialsInputData(final String name, final String password, final String accountType,
                                 final String country, final String balance) {

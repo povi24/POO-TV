@@ -16,6 +16,9 @@ public final class MoviesInputData {
     private int numRatings;
     private int rating;
 
+    public MoviesInputData() {
+
+    }
     public String getName() {
         return name;
     }

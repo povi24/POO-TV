@@ -1,10 +1,23 @@
 package Pages;
 
 public class Register extends Page{
-    public Register() {
-        if(getPageType().equals("register")) {
-            this.setPageType("register");
-            this.getAllowedPages().add("HomePageNon");
+
+    private static Register instance = null;
+
+    public static Register getInstance() {
+        if(instance == null) {
+            instance = new Register();
+
         }
+        return instance;
     }
+    private Register() {
+        this.setPageType("register");
+        this.getAllowedPages().add("HomePageNon");
+//        if(getPageType().equals("register")) {
+
+//        }
+    }
+
+
 }

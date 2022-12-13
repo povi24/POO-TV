@@ -15,6 +15,8 @@ public final class Input {
         return users;
     }
 
+
+
     public void setUsers(final ArrayList<UsersInputData> users) {
         this.users = users;
     }
@@ -34,4 +36,6 @@ public final class Input {
     public void setActions(final ArrayList<ActionsInputData> actions) {
         this.actions = actions;
     }
+
+
 }

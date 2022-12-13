@@ -1,20 +1,37 @@
 package Pages;
 
+import fileio.ActionsInputData;
+
 public class VerifyType {
-    public Page verifyType(final String pageType) {
-        switch (pageType) {
-            case "HomePage" -> new HomePage();
-            case "HomePageNon" -> new HomePageNon();
-            case "register" -> new Register();
-            case "login" -> new Login();
-            case "logout" -> new Logout();
-            case "movies" -> new Movies();
-            case "see details" -> new SeeDetails();
-            case "upgrades" -> new Upgrades();
+    public static Page verifyType(final ActionsInputData command) {
+        switch (command.getPage()) {
+            case "HomePage" -> {
+                return HomePage.getInstance();
+            }
+            case "HomePageNon" -> {
+                return  HomePageNon.getInstance();
+            }
+            case "register" -> {
+                return Register.getInstance();
+            }
+            case "login" -> {
+                return LoginPage.getInstance();
+            }
+            case "logout" -> {
+                return Logout.getInstance();
+            }
+            case "movies" -> {
+                return  Movies.getInstance();
+            }
+            case "see details" -> {
+                return SeeDetails.getInstance();
+            }
+            case "upgrades" -> {
+                return Upgrades.getInstance();
+            }
             default -> {
                 return null;
             }
-        };
-        return null;
+        }
     }
 }

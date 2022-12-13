@@ -1,12 +1,26 @@
 package Pages;
 
 public class Upgrades extends Page{
-    public Upgrades() {
-        if(getPageType().equals("upgrades")) {
-            this.setPageType("upgrades");
-            this.getAllowedPages().add("HomePage");
-            this.getAllowedPages().add("logout");
-            this.getAllowedPages().add("movies");
+
+    private static Upgrades instance = null;
+
+    public static Upgrades getInstance() {
+        if(instance == null) {
+            instance = new Upgrades();
+
         }
+        return instance;
     }
+    private Upgrades() {
+        this.setPageType("upgrades");
+        this.getAllowedPages().add("HomePage");
+        this.getAllowedPages().add("logout");
+        this.getAllowedPages().add("movies");
+//        if(getPageType().equals("upgrades")) {
+
+//        }
+    }
+
+
+
 }

@@ -1,13 +1,26 @@
 package Pages;
 
 public class Movies extends Page{
-    public Movies() {
-        if(getPageType().equals("movies")) {
-            this.setPageType("movies");
-            this.getAllowedPages().add("HomePage");
-            this.getAllowedPages().add("logout");
-            this.getAllowedPages().add("see details");
+
+    private static Movies instance = null;
+
+    public static Movies getInstance() {
+        if(instance == null) {
+            instance = new Movies();
 
         }
+        return instance;
     }
+    private Movies() {
+        this.setPageType("movies");
+        this.getAllowedPages().add("HomePage");
+        this.getAllowedPages().add("logout");
+        this.getAllowedPages().add("see details");
+//        if(getPageType().equals("movies")) {
+
+
+//        }
+    }
+
+
 }

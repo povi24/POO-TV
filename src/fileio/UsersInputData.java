@@ -1,6 +1,8 @@
 package fileio;
 
 
+import helpers.Constants;
+
 import java.util.ArrayList;
 
 
@@ -10,13 +12,21 @@ import java.util.ArrayList;
 public final class UsersInputData {
     private  CredentialsInputData credentials;
 
+    private int tokensCount = 0;
+    private int numFreePremiumMovies = Constants.NUM_OF_FREE_PREMIUM_MOVIES;
     private ArrayList<MoviesInputData> purchasedMovies = new ArrayList<>();
     private ArrayList<MoviesInputData>  watchedMovies = new ArrayList<>();
     private ArrayList<MoviesInputData>  likedMovies = new ArrayList<>();
     private ArrayList<MoviesInputData>  ratedMovies = new ArrayList<>();
-    private int tokens = 0;
-    private static final int NumberOfFreePremiumMovies = 15;
-    private int numFreePremiumMovies = NumberOfFreePremiumMovies;
+
+//    private int numFreePremiumMovies = NumberOfFreePremiumMovies;
+
+    public UsersInputData() {
+
+    }
+    public UsersInputData(CredentialsInputData credentials) {
+        this.credentials = new CredentialsInputData(credentials);
+    }
 
     public CredentialsInputData getCredentials() {
         return credentials;
@@ -58,12 +68,12 @@ public final class UsersInputData {
         this.ratedMovies = ratedMovies;
     }
 
-    public int getTokens() {
-        return tokens;
+    public int getTokensCount() {
+        return tokensCount;
     }
 
-    public void setTokens(final int tokens) {
-        this.tokens = tokens;
+    public void setTokensCount(final int tokensCount) {
+        this.tokensCount = tokensCount;
     }
 
     public int getNumFreePremiumMovies() {
@@ -80,13 +90,13 @@ public final class UsersInputData {
                           final ArrayList<MoviesInputData> watchedMovies,
                           final ArrayList<MoviesInputData> likedMovies,
                           final ArrayList<MoviesInputData> ratedMovies,
-                          final int tokens, final int numFreePremiumMovies) {
+                          final int tokensCount, final int numFreePremiumMovies) {
         this.credentials = credentials;
         this.purchasedMovies = purchasedMovies;
         this.watchedMovies = watchedMovies;
         this.likedMovies = likedMovies;
         this.ratedMovies = ratedMovies;
-        this.tokens = tokens;
+        this.tokensCount = tokensCount;
         this.numFreePremiumMovies = numFreePremiumMovies;
     }
 
@@ -114,8 +124,19 @@ public final class UsersInputData {
             this.ratedMovies.add(new MoviesInputData(movies));
         }
 
-        this.tokens = users.getTokens();
+        this.tokensCount = users.getTokensCount();
         this.numFreePremiumMovies = users.getNumFreePremiumMovies();
 
     }
+
+//    public  UsersInputData(final UsersInputData users) {
+//        this.credentials = users.getCredentials();
+//        this.purchasedMovies = users.getPurchasedMovies();
+//        this.watchedMovies = users.watchedMovies;
+//        this.likedMovies = users.likedMovies;
+//        this.ratedMovies = users.getRatedMovies();
+//        this.tokens = users.getTokens();
+//        this.numFreePremiumMovies = users.getNumFreePremiumMovies();
+//    }
+
 }
