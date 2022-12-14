@@ -17,7 +17,6 @@ public class ExecuteCommands {
                 System.out.println(LiveInfo.getInstance().getCurrentPage().getPageType() + " actiune");
                 CommandOnPage.getInstance().onPage(actionsInputData, input.getUsers(), input.getMovies(), output);
 
-
             }
 
             if(actionsInputData.getType().equals("change page")) {

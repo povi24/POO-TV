@@ -14,7 +14,7 @@ public final class MoviesInputData {
     private ArrayList<String> countriesBanned;
     private int numLikes;
     private int numRatings;
-    private int rating;
+    private double rating;
 
     public MoviesInputData() {
 
@@ -83,14 +83,6 @@ public final class MoviesInputData {
         this.numRatings = numRatings;
     }
 
-    public int getRating() {
-        return rating;
-    }
-
-    public void setRating(final int rating) {
-        this.rating = rating;
-    }
-
 
     public MoviesInputData(final String name, final int year, final int duration,
                            final ArrayList<String> genres, final ArrayList<String> actors,
@@ -120,6 +112,14 @@ public final class MoviesInputData {
     }
 
 
+    public void setRating(double rating) {
+        this.rating = rating;
+    }
+
+    public double getRating() {
+        return rating;
+    }
+
     @Override
     public String toString() {
         return "MoviesInputData{"
@@ -130,4 +130,5 @@ public final class MoviesInputData {
                 + ", genres" +genres
                 + '}';
     }
+
 }

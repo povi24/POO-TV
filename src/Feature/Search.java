@@ -1,0 +1,77 @@
+package Feature;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import fileio.ActionsInputData;
+import fileio.MoviesInputData;
+import fileio.UsersInputData;
+import helpers.LiveInfo;
+
+import java.util.ArrayList;
+
+public final class Search {
+
+    private final ObjectMapper objectMapper = new ObjectMapper();
+
+
+    public static void search(final ActionsInputData command, final ArrayList<UsersInputData> users,
+                              final ArrayList<MoviesInputData> movies, final ArrayNode output) {
+
+        /**
+         * We make sure that we can perform the action(we are on the movies page)
+         */
+
+
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        if(LiveInfo.getInstance().getCurrentPage().getPageType().equals("movies")) {
+
+            ArrayList<MoviesInputData> allMovies = LiveInfo.getInstance().getCurrentMovieList();
+
+            for(int i = 0; i < allMovies.size(); i++) {
+                MoviesInputData movie = allMovies.get(i);
+
+                if(movie.getCountriesBanned().contains(LiveInfo.getInstance().getCurrentUser().getCredentials().getCountry())) {
+                    allMovies.remove(movie);
+                    i--;
+                } else if(!movie.getName().startsWith("startsWith")) {
+                    allMovies.remove(movie);
+                    i--;
+                }
+
+
+            }
+
+            ObjectNode objectNode = objectMapper.createObjectNode();
+//            objectNode.putPOJO("error", null);
+
+            ArrayList<MoviesInputData> moviesAfterSearch = new ArrayList<>();
+            for(int j = 0; j < allMovies.size(); j++) {
+                MoviesInputData movie2 = new MoviesInputData(moviesAfterSearch.get(j));
+                moviesAfterSearch.add(movie2);
+            }
+            objectNode.putPOJO("error", null);
+            objectNode.putPOJO("currentMoviesList", new ArrayList<MoviesInputData>(moviesAfterSearch));
+            objectNode.putPOJO("currentUser", new UsersInputData(LiveInfo.getInstance().getCurrentUser()));
+            output.addPOJO(objectNode);
+//            return;
+        } else {
+            ObjectNode objectNode = objectMapper.createObjectNode();
+            objectNode.putPOJO("error", "Error");
+            objectNode.putPOJO("currentMoviesList", new ArrayList<>());
+            objectNode.putPOJO("currentUser", null);
+            output.addPOJO(objectNode);
+//            return;
+        }
+
+
+
+
+
+    }
+
+
+
+
+}

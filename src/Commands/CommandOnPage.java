@@ -3,6 +3,7 @@ package Commands;
 import Feature.Login;
 import Feature.Logout;
 import Feature.Register;
+import Feature.Search;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import fileio.ActionsInputData;
 import fileio.MoviesInputData;
@@ -26,7 +27,8 @@ public class CommandOnPage {
                               final ArrayList<UsersInputData> users,
                               final ArrayList<MoviesInputData> movies,
                               final ArrayNode output) {
-
+        System.out.println("ajunge macar pana aici?");
+        System.out.println(command.getFeature());
         if (command.getFeature().equals("login")) {
 //            Login loginAction = new Login();
 //            loginAction.setCurrentStart(loginAction.getCurrentStart());
@@ -39,7 +41,12 @@ public class CommandOnPage {
 //            registerAction.setCurrentStart(registerAction.getCurrentStart());
             Register.register(command, users, movies, output);
 
+        } else if (command.getFeature().equals("search")) {
+            System.out.println("sa vedem daca ajunge in search ");
+            Search.search(command, users, movies, output);
+            System.out.println("a trecut de search?");
         }
+
     }
 
 

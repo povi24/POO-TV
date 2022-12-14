@@ -34,6 +34,22 @@ public  class CommandChangePage {
          */
         if(LiveInfo.getInstance().getCurrentPage().getAllowedPages().contains(command.getPage())) {
                 LiveInfo.getInstance().setCurrentPage(VerifyType.verifyType(command));
+
+            System.out.println("aici vad ce pagina am" + command.getPage());
+            System.out.println("aici vad ce feature am " + command.getFeature() );
+
+
+                if(command.getPage().equals("movies") && command.getFeature() == null) {
+
+                    System.out.println("intra in if-ul de nu am feature?");
+                    ObjectMapper objectMapper = new ObjectMapper();
+
+                    ObjectNode objectNode = objectMapper.createObjectNode();
+                    objectNode.putPOJO("error", null);
+                    objectNode.putPOJO("currentMoviesList", new ArrayList<MoviesInputData>(LiveInfo.getInstance().getCurrentMovieList()));
+                    objectNode.putPOJO("currentUser", new UsersInputData(LiveInfo.getInstance().getCurrentUser()));
+                    output.addPOJO(objectNode);
+                }
         } else {
             /**
              * output to print when we are not allowed to change page

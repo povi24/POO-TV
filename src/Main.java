@@ -28,13 +28,20 @@ public class Main {
             users.addAll(Collections.singleton(user));
         }
 
+        LiveInfo.getInstance().initializeApp();
+
         ArrayList<MoviesInputData> movies = new ArrayList<>();
         for (int i = 0; i < inputData.getMovies().size(); i++) {
             MoviesInputData movie = new MoviesInputData(inputData.getMovies().get(i));
+            LiveInfo.getInstance().getCurrentMovieList().add(movie);
             movies.add(movie);
         }
 
-        LiveInfo.getInstance().initializeApp();
+        System.out.println("aici vad ce am in movies" + movies);
+
+
+
+//        LiveInfo.getInstance().initializeApp();
 
         ExecuteCommands.executeCommands(inputData, output);
 
