@@ -1,6 +1,7 @@
 package Commands;
 
 import Feature.Login;
+import Feature.Logout;
 import Feature.Register;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import fileio.ActionsInputData;
@@ -32,10 +33,12 @@ public class CommandOnPage {
 
             Login.login(command, users, movies, output);
 
+
         } else if (command.getFeature().equals("register")) {
 //            Register registerAction = new Register();
 //            registerAction.setCurrentStart(registerAction.getCurrentStart());
             Register.register(command, users, movies, output);
+
         }
     }
 

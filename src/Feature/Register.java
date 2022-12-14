@@ -45,7 +45,7 @@ public final class Register {
                         objectNode.putPOJO("currentMoviesList", new ArrayList<>());
                         objectNode.putPOJO("currentUser", null);
                         output.addPOJO(objectNode);
-
+                        return;
                     }
                 }
             }

@@ -30,6 +30,7 @@ public final class Login {
             /**
              * Action is performed successfully on the login page
              */
+            boolean sw = false;
             for(int i = 0; i < users.size(); i++) {
                 if (users.get(i).getCredentials().getName().
                         equals(command.getCredentials().getName())) {
@@ -39,6 +40,7 @@ public final class Login {
                          * User has the right username and password, so we set him as
                          * the current user
                          */
+                        sw = true;
 
                         LiveInfo.getInstance().setCurrentUser(users.get(i));
 //                        setCurrUser(users.get(i));
@@ -50,6 +52,17 @@ public final class Login {
                         objectNode.putPOJO("currentMoviesList", new ArrayList<>());
                         objectNode.putPOJO("currentUser", new UsersInputData(LiveInfo.getInstance().getCurrentUser()));
                         output.addPOJO(objectNode);
+                        return;
+                    } else {
+                                ObjectNode objectNode = objectMapper.createObjectNode();
+                                objectNode.putPOJO("error", "Error");
+                                objectNode.putPOJO("currentMoviesList", new ArrayList<>());
+                                objectNode.putPOJO("currentUser", null);
+                                output.addPOJO(objectNode);
+                                LiveInfo.getInstance().setCurrentPage(HomePageNon.getInstance());
+//                setCurrPage(pageType.verifyType("HomePageNon"));
+                                return;
+
                     }
                 }
             }
@@ -59,23 +72,25 @@ public final class Login {
             objectNode.putPOJO("currentMoviesList", new ArrayList<>());
             objectNode.putPOJO("currentUser", null);
             output.addPOJO(objectNode);
+
         }
 
         /**
          * Login has failed
          */
-        for(int i = 0; i < users.size(); i++) {
-            if (!users.get(i).getCredentials().getName().
-                    equals(command.getCredentials().getName())) {
-                ObjectNode objectNode = objectMapper.createObjectNode();
-                objectNode.putPOJO("error", "Error");
-                objectNode.putPOJO("currentMoviesList", new ArrayList<>());
-                objectNode.putPOJO("currentUser", null);
-                output.addPOJO(objectNode);
-                LiveInfo.getInstance().setCurrentPage(HomePageNon.getInstance());
-//                setCurrPage(pageType.verifyType("HomePageNon"));
-            }
-        }
+//        for(int i = 0; i < users.size(); i++) {
+//            if (!users.get(i).getCredentials().getName().
+//                    equals(command.getCredentials().getName())) {
+//                ObjectNode objectNode = objectMapper.createObjectNode();
+//                objectNode.putPOJO("error", "Error");
+//                objectNode.putPOJO("currentMoviesList", new ArrayList<>());
+//                objectNode.putPOJO("currentUser", null);
+//                output.addPOJO(objectNode);
+//                LiveInfo.getInstance().setCurrentPage(HomePageNon.getInstance());
+////                setCurrPage(pageType.verifyType("HomePageNon"));
+//                return;
+//            }
+//        }
     }
 
     public ObjectMapper getObjectMapper() {

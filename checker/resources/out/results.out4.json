@@ -17,23 +17,21 @@
     "ratedMovies" : [ ]
   }
 }, {
-  "error" : "Error",
+  "error" : null,
   "currentMoviesList" : [ ],
-  "currentUser" : null
-}, {
-  "error" : "Error",
-  "currentMoviesList" : [ ],
-  "currentUser" : null
-}, {
-  "error" : "Error",
-  "currentMoviesList" : [ ],
-  "currentUser" : null
-}, {
-  "error" : "Error",
-  "currentMoviesList" : [ ],
-  "currentUser" : null
-}, {
-  "error" : "Error",
-  "currentMoviesList" : [ ],
-  "currentUser" : null
+  "currentUser" : {
+    "credentials" : {
+      "name" : "Mihail",
+      "password" : "discret",
+      "accountType" : "premium",
+      "country" : "Russia",
+      "balance" : "1337"
+    },
+    "tokensCount" : 0,
+    "numFreePremiumMovies" : 15,
+    "purchasedMovies" : [ ],
+    "watchedMovies" : [ ],
+    "likedMovies" : [ ],
+    "ratedMovies" : [ ]
+  }
 } ]

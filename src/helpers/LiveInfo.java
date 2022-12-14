@@ -49,7 +49,6 @@ public final class LiveInfo {
         this.currentMovieList = currentMovieList;
     }
 
-
     public Page getCurrentPage() {
         return currentPage;
     }

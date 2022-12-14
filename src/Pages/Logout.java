@@ -13,8 +13,13 @@ public class Logout extends Page{
     }
     private Logout() {
 //        if(getPageType().equals("logout")) {
-        this.setPageType("logout");
-        this.getAllowedPages().add("HomePageNon");
+            this.setPageType("HomePageNon");
+            this.getAllowedPages().add("register");
+            this.getAllowedPages().add("login");
+//            this.getAllowedPages("")
+//        this.getAllowedPages().add("HomePageNon");
+
+//        this.setPageType("HomePageNon");
 
 //        }
     }

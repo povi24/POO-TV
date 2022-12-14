@@ -44,6 +44,7 @@ public  class CommandChangePage {
             objectNode.putPOJO("currentMoviesList", new ArrayList<>());
             objectNode.putPOJO("currentUser", null);
             output.addPOJO(objectNode);
+            return;
 
         }
 
