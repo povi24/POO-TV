@@ -30,9 +30,6 @@ public final class Logout {
             objectNode.putPOJO("currentUser", null);
             output.addPOJO(objectNode);
         }
-
-
-
     }
 
     public ObjectMapper getObjectMapper() {

@@ -41,16 +41,6 @@
     "numRatings" : 0,
     "rating" : 0.0
   }, {
-    "name" : "My Sassy Girl",
-    "year" : 2005,
-    "duration" : 125,
-    "genres" : [ "Comedy", "Mystery", "Fantasy" ],
-    "actors" : [ "Mabel MacAless", "Iggy MacUchadair", "Arni Harrow", "Reg Kelleher" ],
-    "countriesBanned" : [ "Dominican Republic", "Indonesia", "Japan" ],
-    "numLikes" : 0,
-    "numRatings" : 0,
-    "rating" : 0.0
-  }, {
     "name" : "Take the Money and Run",
     "year" : 2006,
     "duration" : 134,

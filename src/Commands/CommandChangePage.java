@@ -35,17 +35,36 @@ public  class CommandChangePage {
         if(LiveInfo.getInstance().getCurrentPage().getAllowedPages().contains(command.getPage())) {
                 LiveInfo.getInstance().setCurrentPage(VerifyType.verifyType(command));
 
-            System.out.println("aici vad ce pagina am" + command.getPage());
-            System.out.println("aici vad ce feature am " + command.getFeature() );
+//            System.out.println("aici vad ce pagina am" + command.getPage());
+//            System.out.println("aici vad ce feature am " + command.getFeature() );
 
 
                 if(command.getPage().equals("movies") && command.getFeature() == null) {
+                    System.out.println("ce feature am aici la changepage" + command.getFeature());
 
-                    System.out.println("intra in if-ul de nu am feature?");
+
+
+
+//                    System.out.println("intra in if-ul de nu am feature?");
                     ObjectMapper objectMapper = new ObjectMapper();
+                    ArrayList<MoviesInputData> allMovies = LiveInfo.getInstance().getCurrentMovieList();
+                    for (int i = 0; i < allMovies.size(); i++) {
+                        MoviesInputData movie = allMovies.get(i);
+                        if (movie.getCountriesBanned().contains(LiveInfo.getInstance().getCurrentUser().getCredentials().getCountry())) {
+                            allMovies.remove(movie);
+                            i--;
+                        }
+                    }
+
+                    ArrayList<MoviesInputData> moviesToPrint = new ArrayList<>();
+                    for(int j = 0; j < allMovies.size(); j++) {
+                        MoviesInputData movie3 = new MoviesInputData(allMovies.get(j));
+                        moviesToPrint.add(movie3);
+                    }
 
                     ObjectNode objectNode = objectMapper.createObjectNode();
                     objectNode.putPOJO("error", null);
+                    System.out.println("care e lista de movies in commandchangepage cand la movies n-am niciun feature" + LiveInfo.getInstance().getCurrentMovieList());
                     objectNode.putPOJO("currentMoviesList", new ArrayList<MoviesInputData>(LiveInfo.getInstance().getCurrentMovieList()));
                     objectNode.putPOJO("currentUser", new UsersInputData(LiveInfo.getInstance().getCurrentUser()));
                     output.addPOJO(objectNode);

@@ -39,26 +39,6 @@
     "numRatings" : 0,
     "rating" : 0.0
   }, {
-    "name" : "Take the Money and Run",
-    "year" : 2006,
-    "duration" : 134,
-    "genres" : [ "Thriller", "Western", "Mystery" ],
-    "actors" : [ "Hailey Evequot", "Fenelia Maryott", "Gloriane Haughton", "Evvie Asbery" ],
-    "countriesBanned" : [ "Indonesia", "China", "India" ],
-    "numLikes" : 0,
-    "numRatings" : 0,
-    "rating" : 0.0
-  }, {
-    "name" : "Penelope",
-    "year" : 2008,
-    "duration" : 166,
-    "genres" : [ "Fantasy", "Drama", "Thriller" ],
-    "actors" : [ "Elnore Neild", "Gay Cobbing", "Guntar Holton", "Merry Troni" ],
-    "countriesBanned" : [ "Azerbaijan", "China", "India" ],
-    "numLikes" : 0,
-    "numRatings" : 0,
-    "rating" : 0.0
-  }, {
     "name" : "Kiwi!",
     "year" : 2002,
     "duration" : 82,
@@ -155,26 +135,6 @@
     "genres" : [ "Comedy", "Thriller", "Horror" ],
     "actors" : [ "Betta MacAughtrie", "Miltie Vousden", "Rand Eliasson", "Calypso Jamson" ],
     "countriesBanned" : [ "Indonesia", "Argentina", "China" ],
-    "numLikes" : 0,
-    "numRatings" : 0,
-    "rating" : 0.0
-  }, {
-    "name" : "As You Like It",
-    "year" : 1999,
-    "duration" : 91,
-    "genres" : [ "Romance", "Horror", "Thriller" ],
-    "actors" : [ "Maureene Elks", "Amber McGilbon", "Lora Doelle", "Blondelle Spyvye" ],
-    "countriesBanned" : [ "China", "Venezuela", "India" ],
-    "numLikes" : 0,
-    "numRatings" : 0,
-    "rating" : 0.0
-  }, {
-    "name" : "The Well-Digger's Daughter",
-    "year" : 1994,
-    "duration" : 141,
-    "genres" : [ "Comedy", "Mystery", "Drama" ],
-    "actors" : [ "Fallon Sutcliff", "Maribeth Penas", "Codee Hooks", "Rubia Cotilard" ],
-    "countriesBanned" : [ "China", "South Africa", "India" ],
     "numLikes" : 0,
     "numRatings" : 0,
     "rating" : 0.0
@@ -303,6 +263,24 @@
       "password" : "corega",
       "accountType" : "premium",
       "country" : "Japan",
+      "balance" : "50"
+    },
+    "tokensCount" : 0,
+    "numFreePremiumMovies" : 15,
+    "purchasedMovies" : [ ],
+    "watchedMovies" : [ ],
+    "likedMovies" : [ ],
+    "ratedMovies" : [ ]
+  }
+}, {
+  "error" : null,
+  "currentMoviesList" : [ ],
+  "currentUser" : {
+    "credentials" : {
+      "name" : "Eduard",
+      "password" : "secret",
+      "accountType" : "premium",
+      "country" : "India",
       "balance" : "50"
     },
     "tokensCount" : 0,

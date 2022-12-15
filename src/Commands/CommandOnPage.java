@@ -1,11 +1,13 @@
 package Commands;
 
+import Feature.Filter;
 import Feature.Login;
 import Feature.Logout;
 import Feature.Register;
 import Feature.Search;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import fileio.ActionsInputData;
+import fileio.FiltersInputData;
 import fileio.MoviesInputData;
 import fileio.UsersInputData;
 import helpers.LiveInfo;
@@ -29,6 +31,8 @@ public class CommandOnPage {
                               final ArrayNode output) {
         System.out.println("ajunge macar pana aici?");
         System.out.println(command.getFeature());
+
+        FiltersInputData filter = new FiltersInputData();
         if (command.getFeature().equals("login")) {
 //            Login loginAction = new Login();
 //            loginAction.setCurrentStart(loginAction.getCurrentStart());
@@ -42,9 +46,14 @@ public class CommandOnPage {
             Register.register(command, users, movies, output);
 
         } else if (command.getFeature().equals("search")) {
-            System.out.println("sa vedem daca ajunge in search ");
+//            System.out.println("sa vedem daca ajunge in search ");
             Search.search(command, users, movies, output);
-            System.out.println("a trecut de search?");
+//            System.out.println("a trecut de search?");
+        } else if (command.getFeature().equals("filter")) {
+            System.out.println("intra pe if-ul cu comanda FILTER?");
+            Filter.filter(command, users, movies, output);
+
+            System.out.println("care e lista mea de filme dupa ce efectuez actiune FILTER " + LiveInfo.getInstance().getCurrentMovieList());
         }
 
     }
