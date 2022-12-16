@@ -42,9 +42,6 @@ public  class CommandChangePage {
                 if(command.getPage().equals("movies") && command.getFeature() == null) {
                     System.out.println("ce feature am aici la changepage" + command.getFeature());
 
-
-
-
 //                    System.out.println("intra in if-ul de nu am feature?");
                     ObjectMapper objectMapper = new ObjectMapper();
                     ArrayList<MoviesInputData> allMovies = LiveInfo.getInstance().getCurrentMovieList();
@@ -69,6 +66,57 @@ public  class CommandChangePage {
                     objectNode.putPOJO("currentUser", new UsersInputData(LiveInfo.getInstance().getCurrentUser()));
                     output.addPOJO(objectNode);
                 }
+
+
+                if (command.getPage().equals("see details") && command.getFeature() == null) {
+                    System.out.println("intra pe if-ul de see details din commandchangepage?");
+                    /**
+                     * We define the movie list for the current user
+                     */
+                    ObjectMapper objectMapper = new ObjectMapper();
+                    ObjectNode objectNode = objectMapper.createObjectNode();
+                    ArrayList<MoviesInputData> allMovies = LiveInfo.getInstance().getCurrentMovieList();
+                    for (int i = 0; i < allMovies.size(); i++) {
+                        MoviesInputData movie = allMovies.get(i);
+                        if (movie.getCountriesBanned().contains(LiveInfo.getInstance().getCurrentUser().getCredentials().getCountry())) {
+                            allMovies.remove(movie);
+                            i--;
+                        }
+                    }
+                    System.out.println("ce lista de movies am in see details dupa ce sunt banate?(ar trebui sa am 0)" + allMovies);
+                    //all movies e lista userului curent
+
+
+                    if(allMovies.contains(command.getMovie())) {
+                        for (int j = 0; j < allMovies.size(); j++) {
+                            System.out.println("imi intra in for-ul de la SEEDETAILS la commandchangepage?");
+                            {
+                                /**
+                                 * we make a list with the movie we want to see the details from
+                                 */
+
+                                ArrayList<MoviesInputData> list = new ArrayList<>();
+                                MoviesInputData movie = allMovies.get(j);
+                                list.add(movie);
+                                LiveInfo.getInstance().setCurrentMovieList(list);
+                                ArrayList<MoviesInputData> moviesForPrinting = new ArrayList<>();
+                                moviesForPrinting.add(new MoviesInputData(movie));
+
+                                System.out.println("ce filme am in see details la movies for printing" + moviesForPrinting);
+                                objectNode.putPOJO("error", null);
+                                objectNode.putPOJO("currentMoviesList", moviesForPrinting);
+                                objectNode.putPOJO("currentUser", new UsersInputData(LiveInfo.getInstance().getCurrentUser()));
+                                output.addPOJO(objectNode);
+
+                            }
+                        }
+                    } else {
+                        objectNode.putPOJO("error", "Error");
+                        objectNode.putPOJO("currentMoviesList", new ArrayList<>());
+                        objectNode.putPOJO("currentUser", null);
+                        output.addPOJO(objectNode);
+                    }
+                }
         } else {
             /**
              * output to print when we are not allowed to change page
@@ -84,6 +132,4 @@ public  class CommandChangePage {
         }
 
     }
-
-
 }

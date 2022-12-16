@@ -30,7 +30,7 @@ public final class Login {
             /**
              * Action is performed successfully on the login page
              */
-            boolean sw = false;
+//            boolean sw = false;
             for(int i = 0; i < users.size(); i++) {
                 if (users.get(i).getCredentials().getName().
                         equals(command.getCredentials().getName())) {
@@ -40,8 +40,7 @@ public final class Login {
                          * User has the right username and password, so we set him as
                          * the current user
                          */
-                        sw = true;
-
+//                        sw = true;
                         LiveInfo.getInstance().setCurrentUser(users.get(i));
 //                        setCurrUser(users.get(i));
                         LiveInfo.getInstance().setCurrentPage(HomePage.getInstance());
