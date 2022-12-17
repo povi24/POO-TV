@@ -6,9 +6,11 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import fileio.ActionsInputData;
 import fileio.MoviesInputData;
 import fileio.UsersInputData;
+import helpers.Database;
 import helpers.LiveInfo;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public final class RateTheMovie {
     private final ObjectMapper objectMapper = new ObjectMapper();
@@ -16,7 +18,7 @@ public final class RateTheMovie {
 
 
     public static void rate(final ActionsInputData command, final ArrayList<UsersInputData> users,
-                             final ArrayList<MoviesInputData> movies, final ArrayNode output) {
+                             final ArrayList<MoviesInputData> movies, final ArrayNode output, final Database database) {
 
 
         /**
@@ -37,16 +39,35 @@ public final class RateTheMovie {
                         /**
                          * We modify the watched section of the user
                          */
-                        listOfOneMovie.get(0).setNumRatings(listOfOneMovie.get(0).getNumRatings() + 1);
-                        listOfOneMovie.get(0).setSumOfRating(listOfOneMovie.get(0).getSumOfRating() + command.getRate());
-                        listOfOneMovie.get(0).setRating(listOfOneMovie.get(0).getSumOfRating() / listOfOneMovie.get(0).getNumRatings());
-                        MoviesInputData ratedMovie = listOfOneMovie.get(0);
-                        LiveInfo.getInstance().getCurrentUser().getRatedMovies().add(ratedMovie);
+
+                        MoviesInputData ratedMovie = new MoviesInputData(listOfOneMovie.get(0));
+                        ratedMovie.setNumRatings(ratedMovie.getNumRatings() + 1);
+                        ratedMovie.setSumOfRating(ratedMovie.getSumOfRating() + command.getRate());
+                        ratedMovie.setRating(ratedMovie.getSumOfRating() / ratedMovie.getNumRatings());
+
+                        UsersInputData currentUser = LiveInfo.getInstance().getCurrentUser();
+                        currentUser.getRatedMovies().add(ratedMovie);
+
+                        var pos = currentUser.getPurchasedMovies().indexOf(listOfOneMovie.get(0));
+                        currentUser.getPurchasedMovies().remove(pos);
+                        currentUser.getPurchasedMovies().add(pos,ratedMovie);
+
+                        pos = currentUser.getWatchedMovies().indexOf(listOfOneMovie.get(0));
+                        currentUser.getWatchedMovies().remove(pos);
+                        currentUser.getWatchedMovies().add(pos,ratedMovie);
+
                         objectNode.putPOJO("error", null);
-                        objectNode.putPOJO("currentMoviesList", new ArrayList<>(listOfOneMovie));
+                        objectNode.putPOJO("currentMoviesList", new ArrayList<>(Collections.singleton(ratedMovie)));
                         objectNode.putPOJO("currentUser", new UsersInputData(LiveInfo.getInstance().getCurrentUser()));
                         output.addPOJO(objectNode);
                         movieFound = true;
+                        for( MoviesInputData movie : database.getDatabaseMovies()){
+                            if(movie.getName().equals(ratedMovie.getName())){
+                                movie.setNumRatings(ratedMovie.getNumRatings());
+                                movie.setRating(ratedMovie.getRating());
+                                break;
+                            }
+                        }
                         break;
                     }
                 }

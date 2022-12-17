@@ -16,9 +16,6 @@ public class Upgrades extends Page{
         this.getAllowedPages().add("HomePage");
         this.getAllowedPages().add("logout");
         this.getAllowedPages().add("movies");
-//        if(getPageType().equals("upgrades")) {
-
-//        }
     }
 
 

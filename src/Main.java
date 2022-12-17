@@ -1,5 +1,4 @@
-import Commands.ExecuteCommands;
-import Pages.HomePageNon;
+import commands.ExecuteCommands;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.node.ArrayNode;
@@ -9,12 +8,8 @@ import fileio.UsersInputData;
 import helpers.Database;
 import helpers.LiveInfo;
 
-import javax.xml.crypto.Data;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 public class Main {
     public static void main(String[] args) throws IOException {
@@ -36,16 +31,7 @@ public class Main {
         }
 
         LiveInfo.getInstance().initializeApp();
-
-        System.out.println("aici vad ce am in movies" + Database.getInstance().getDatabaseMovies());
-
-
-
-//        LiveInfo.getInstance().initializeApp();
-
         ExecuteCommands.executeCommands(inputData, output);
-
-
 
         /**
          * Here we write the results at output
@@ -56,17 +42,17 @@ public class Main {
         //objectWriter.writeValue(new File("checker/resources/out/out_") + inputPath[inputPath.length - 6] + ".json"), output);
 
 
-        char[] inPath = args[0].toCharArray();
-//        String outPath = "checker/resources/out/out_" + inPath[inPath.length - 6] + ".json";
-        String outPath;
-        if (inPath[inPath.length - 6] == '0') {
-            outPath = "checker/resources/out/" + args[1] + "10.json";
-        } else {
-            outPath = "checker/resources/out/" + args[1]
-                    + inPath[inPath.length - 6] + ".json";
-        }
-        objectWriter.writeValue(new File(outPath), output);
-
+//        char[] inPath = args[0].toCharArray();
+////        String outPath = "checker/resources/out/out_" + inPath[inPath.length - 6] + ".json";
+//        String outPath;
+//        if (inPath[inPath.length - 6] == '0') {
+//            outPath = "checker/resources/out/" + args[1] + "10.json";
+//        } else {
+//            outPath = "checker/resources/out/" + args[1]
+//                    + inPath[inPath.length - 6] + ".json";
+//        }
+        //objectWriter.writeValue(new File(outPath), output);
+        Database.getInstance().resetDatabase();
 
 
     }

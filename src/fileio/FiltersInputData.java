@@ -3,7 +3,6 @@ package fileio;
 import java.util.ArrayList;
 
 public final class FiltersInputData {
-    //avem sort si contains
     private SortInputData sort;
     private ContainsInputData contains;
 

@@ -135,15 +135,15 @@ public final class MoviesInputData {
         this.sumOfRating = sumOfRating;
     }
 
-    @Override
-    public String toString() {
-        return "MoviesInputData{"
-                + "name'" + name + '\''
-                + ", year=" + year
-                + ", duration=" + duration
-                + ", actors=" + actors
-                + ", genres" +genres
-                + '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "MoviesInputData{"
+//                + "name'" + name + '\''
+//                + ", year=" + year
+//                + ", duration=" + duration
+//                + ", actors=" + actors
+//                + ", genres" +genres
+//                + '}';
+//    }
 
 }

@@ -162,7 +162,7 @@ public final class Test {
         File refFile = new File(CHECKER_RESOURCES_FOLDER + REF_FOLDER + testFileName);
 
         try {
-            task.get(MAX_MILLISECONDS_PER_TEST, TimeUnit.MILLISECONDS);
+            task.get(MAX_MILLISECONDS_PER_TEST, TimeUnit.MINUTES);
         } catch (TimeoutException e) {
             printMessage(testFileName, "Timeout");
             return;

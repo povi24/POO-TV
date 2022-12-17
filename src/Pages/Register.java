@@ -14,9 +14,6 @@ public class Register extends Page{
     private Register() {
         this.setPageType("register");
         this.getAllowedPages().add("HomePageNon");
-//        if(getPageType().equals("register")) {
-
-//        }
     }
 
 

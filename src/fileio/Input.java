@@ -15,8 +15,6 @@ public final class Input {
         return users;
     }
 
-
-
     public void setUsers(final ArrayList<UsersInputData> users) {
         this.users = users;
     }

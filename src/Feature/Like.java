@@ -6,16 +6,15 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import fileio.ActionsInputData;
 import fileio.MoviesInputData;
 import fileio.UsersInputData;
+import helpers.Database;
 import helpers.LiveInfo;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public final class Like {
-    private final ObjectMapper objectMapper = new ObjectMapper();
-
-
     public static void like(final ActionsInputData command, final ArrayList<UsersInputData> users,
-                            final ArrayList<MoviesInputData> movies, final ArrayNode output) {
+                            final ArrayList<MoviesInputData> movies, final ArrayNode output, final Database database) {
 
         /**
          * We make sure that we can perform the action(we are on the see details page)
@@ -35,14 +34,32 @@ public final class Like {
                     /**
                      * We modify the watched section of the user
                      */
-                    listOfOneMovie.get(0).setNumLikes(listOfOneMovie.get(0).getNumLikes() + 1);
-                    MoviesInputData likedMovie = listOfOneMovie.get(0);
-                    LiveInfo.getInstance().getCurrentUser().getLikedMovies().add(likedMovie);
+
+                    MoviesInputData likedMovie=new MoviesInputData( listOfOneMovie.get(0));
+                    likedMovie.setNumLikes(likedMovie.getNumLikes() + 1);
+
+                    UsersInputData currentUser=LiveInfo.getInstance().getCurrentUser();
+                    currentUser.getLikedMovies().add(likedMovie);
+
+                    var pos = currentUser.getPurchasedMovies().indexOf(listOfOneMovie.get(0));
+                    currentUser.getPurchasedMovies().remove(pos);
+                    currentUser.getPurchasedMovies().add(pos,likedMovie);
+
+                    pos = currentUser.getWatchedMovies().indexOf(listOfOneMovie.get(0));
+                    currentUser.getWatchedMovies().remove(pos);
+                    currentUser.getWatchedMovies().add(pos,likedMovie);
+
                     objectNode.putPOJO("error", null);
-                    objectNode.putPOJO("currentMoviesList", new ArrayList<>(listOfOneMovie));
+                    objectNode.putPOJO("currentMoviesList", new ArrayList<>(Collections.singleton(likedMovie)));
                     objectNode.putPOJO("currentUser", new UsersInputData(LiveInfo.getInstance().getCurrentUser()));
                     output.addPOJO(objectNode);
                     movieFound = true;
+                    for( MoviesInputData movie : database.getDatabaseMovies()){
+                        if(movie.getName().equals(likedMovie.getName())){
+                            movie.setNumLikes(likedMovie.getNumLikes());
+                            break;
+                        }
+                    }
                     break;
                 }
             }

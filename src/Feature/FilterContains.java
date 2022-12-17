@@ -1,11 +1,9 @@
 package Feature;
 
-import Commands.CommandOnPage;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import fileio.ActionsInputData;
-import fileio.FiltersInputData;
 import fileio.MoviesInputData;
 import fileio.UsersInputData;
 import helpers.Database;
@@ -24,9 +22,7 @@ public final class FilterContains {
          */
         ObjectMapper objectMapper = new ObjectMapper();
         if (LiveInfo.getInstance().getCurrentPage().getPageType().equals("movies")) {
-
             ArrayList<MoviesInputData> allMovies = new ArrayList<>(Database.getInstance().getDatabaseMovies());
-
             /**
              * We make sure that the movie list for each user doesn't contain the movie from the country
              * where the user is banned from

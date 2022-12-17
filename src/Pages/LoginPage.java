@@ -13,11 +13,8 @@ public class LoginPage extends Page{
     }
 
     private LoginPage() {
-//        if(getPageType().equals("login")) {
         this.setPageType("login");
         this.getAllowedPages().add("HomePage");
-
-//        }
     }
 
 }

@@ -19,8 +19,6 @@ public final class UsersInputData {
     private ArrayList<MoviesInputData>  likedMovies = new ArrayList<>();
     private ArrayList<MoviesInputData>  ratedMovies = new ArrayList<>();
 
-//    private int numFreePremiumMovies = NumberOfFreePremiumMovies;
-
     public UsersInputData() {
 
     }
@@ -128,14 +126,5 @@ public final class UsersInputData {
         this.numFreePremiumMovies = user.getNumFreePremiumMovies();
     }
 
-//    public  UsersInputData(final UsersInputData users) {
-//        this.credentials = users.getCredentials();
-//        this.purchasedMovies = users.getPurchasedMovies();
-//        this.watchedMovies = users.watchedMovies;
-//        this.likedMovies = users.likedMovies;
-//        this.ratedMovies = users.getRatedMovies();
-//        this.tokens = users.getTokens();
-//        this.numFreePremiumMovies = users.getNumFreePremiumMovies();
-//    }
 
 }

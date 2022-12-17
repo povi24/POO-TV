@@ -9,9 +9,9 @@ public final class ActionsInputData {
     private  String type;
     private  String page;
     private  String feature;
-    private  CredentialsInputData credentials; //fac o clasa aici
+    private  CredentialsInputData credentials;
     private  String startsWith;
-    private  FiltersInputData filters; //fac o clasa pentru asta
+    private  FiltersInputData filters;
     private int count;
     private int rate;
 

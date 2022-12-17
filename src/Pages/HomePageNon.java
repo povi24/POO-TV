@@ -14,13 +14,9 @@ public class HomePageNon extends Page {
         return instance;
     }
     private HomePageNon() {
-//        if(getPageType().equals("HomePageNon")) {
         this.setPageType("HomePageNon");
-
         this.getAllowedPages().add("register");
         this.getAllowedPages().add("login");
-
-//        }
     }
 
 

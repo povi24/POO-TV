@@ -1,7 +1,5 @@
 package Pages;
 
-import Commands.CommandChangePage;
-
 public class HomePage extends Page{
     private static HomePage instance = null;
     public static HomePage getInstance() {
@@ -17,10 +15,6 @@ public class HomePage extends Page{
         this.getAllowedPages().add("logout");
         this.getAllowedPages().add("upgrades");
         this.setPageType("HomePage");
-//        if(getPageType().equals("HomePage")) {
-//        }
+
     }
-
-
-
 }

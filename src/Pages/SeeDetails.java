@@ -18,10 +18,6 @@ public class SeeDetails extends Page{
         this.getAllowedPages().add("logout");
         this.getAllowedPages().add("movies");
         this.getAllowedPages().add("see details");
-//        if(getPageType().equals("see details")) {
-
-
-//        }
     }
 
 

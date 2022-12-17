@@ -34,4 +34,8 @@ public final class Database {
     }
 
 
+    public void resetDatabase() {
+        databaseUsers.clear();
+        databaseMovies.clear();
+    }
 }

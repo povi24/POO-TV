@@ -12,16 +12,9 @@ public class Logout extends Page{
         return instance;
     }
     private Logout() {
-//        if(getPageType().equals("logout")) {
             this.setPageType("HomePageNon");
             this.getAllowedPages().add("register");
             this.getAllowedPages().add("login");
-//            this.getAllowedPages("")
-//        this.getAllowedPages().add("HomePageNon");
-
-//        this.setPageType("HomePageNon");
-
-//        }
     }
 
 
