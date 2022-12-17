@@ -1,5 +1,7 @@
 package fileio;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.ArrayList;
 
 /**
@@ -15,6 +17,9 @@ public final class MoviesInputData {
     private int numLikes;
     private int numRatings;
     private double rating;
+
+    @JsonIgnore
+    private double sumOfRating;
 
     public MoviesInputData() {
 
@@ -118,6 +123,16 @@ public final class MoviesInputData {
 
     public double getRating() {
         return rating;
+    }
+
+    @JsonIgnore
+    public double getSumOfRating() {
+        return sumOfRating;
+    }
+
+    @JsonIgnore
+    public void setSumOfRating(double sumOfRating) {
+        this.sumOfRating = sumOfRating;
     }
 
     @Override

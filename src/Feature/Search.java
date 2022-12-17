@@ -1,11 +1,13 @@
 package Feature;
 
+import Commands.CommandOnPage;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import fileio.ActionsInputData;
 import fileio.MoviesInputData;
 import fileio.UsersInputData;
+import helpers.Database;
 import helpers.LiveInfo;
 
 import java.util.ArrayList;
@@ -23,7 +25,7 @@ public final class Search {
         ObjectMapper objectMapper = new ObjectMapper();
         if(LiveInfo.getInstance().getCurrentPage().getPageType().equals("movies")) {
 
-            ArrayList<MoviesInputData> allMovies = LiveInfo.getInstance().getCurrentMovieList();
+            ArrayList<MoviesInputData> allMovies = new ArrayList<>(Database.getInstance().getDatabaseMovies());
 
             /**
              * We make sure that the movie list for each user doesn't contain the movie from the country
@@ -53,11 +55,14 @@ public final class Search {
                 moviesAfterSearch.add(movie2);
             }
 
+            LiveInfo.getInstance().setCurrentMovieList(new ArrayList<>(moviesAfterSearch));
+
+
             /**
              * We print the correct movie list
              */
             objectNode.putPOJO("error", null);
-            objectNode.putPOJO("currentMoviesList", new ArrayList<MoviesInputData>(moviesAfterSearch));
+            objectNode.putPOJO("currentMoviesList", new ArrayList<>(moviesAfterSearch));
             objectNode.putPOJO("currentUser", new UsersInputData(LiveInfo.getInstance().getCurrentUser()));
             output.addPOJO(objectNode);
 //            return;

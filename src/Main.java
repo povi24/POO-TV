@@ -1,16 +1,20 @@
 import Commands.ExecuteCommands;
+import Pages.HomePageNon;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import fileio.Input;
 import fileio.MoviesInputData;
 import fileio.UsersInputData;
+import helpers.Database;
 import helpers.LiveInfo;
 
+import javax.xml.crypto.Data;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) throws IOException {
@@ -21,23 +25,19 @@ public class Main {
         Input inputData = objectMapper.readValue(new File(args[0]), Input.class);
         ArrayNode output = objectMapper.createArrayNode();
 
-        ArrayList<UsersInputData> users = new ArrayList<>();
         for (int i = 0; i < inputData.getUsers().size(); i++) {
             UsersInputData user = new UsersInputData(inputData.getUsers().get(i));
-            //de intrebat ce se fute aici
-            users.addAll(Collections.singleton(user));
+            Database.getInstance().getDatabaseUsers().add(user);
+        }
+
+        for (int i = 0; i < inputData.getMovies().size(); i++) {
+            MoviesInputData movie = new MoviesInputData(inputData.getMovies().get(i));
+            Database.getInstance().getDatabaseMovies().add(movie);
         }
 
         LiveInfo.getInstance().initializeApp();
 
-        ArrayList<MoviesInputData> movies = new ArrayList<>();
-        for (int i = 0; i < inputData.getMovies().size(); i++) {
-            MoviesInputData movie = new MoviesInputData(inputData.getMovies().get(i));
-            LiveInfo.getInstance().getCurrentMovieList().add(movie);
-            movies.add(movie);
-        }
-
-        System.out.println("aici vad ce am in movies" + movies);
+        System.out.println("aici vad ce am in movies" + Database.getInstance().getDatabaseMovies());
 
 
 

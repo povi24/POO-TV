@@ -17,10 +17,7 @@ public class Movies extends Page{
         this.getAllowedPages().add("logout");
         this.getAllowedPages().add("see details");
         this.getAllowedPages().add("upgrades");
-//        if(getPageType().equals("movies")) {
-
-
-//        }
+        this.getAllowedPages().add("movies");
     }
 
 

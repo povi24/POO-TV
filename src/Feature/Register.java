@@ -10,6 +10,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import fileio.ActionsInputData;
 import fileio.MoviesInputData;
 import fileio.UsersInputData;
+import helpers.Database;
 import helpers.LiveInfo;
 
 import java.util.ArrayList;
@@ -18,7 +19,7 @@ public final class Register {
 
     //    private VerifyType pageType = new VerifyType();
 
-    public static void register(final ActionsInputData command, final ArrayList<UsersInputData> users,
+    public static void register(final ActionsInputData command, final ArrayList<UsersInputData> uers,
                          final ArrayList<MoviesInputData> movies, final ArrayNode output) {
         ObjectMapper objectMapper= new ObjectMapper();
         /**
@@ -28,10 +29,11 @@ public final class Register {
             /**
              * Action is performed successfully on the register page
              */
-            for(int i = 0; i < users.size(); i++) {
-                if(users.get(i).getCredentials().getName().
+            boolean sw = false;
+            for(int i = 0; i < Database.getInstance().getDatabaseUsers().size(); i++) {
+                if(Database.getInstance().getDatabaseUsers().get(i).getCredentials().getName().
                         equals((command.getCredentials().getName()))) {
-                    if(users.get(i).getCredentials().getPassword().
+                    if(Database.getInstance().getDatabaseUsers().get(i).getCredentials().getPassword().
                             equals(command.getCredentials().getPassword())) {
                         /**
                          * The user is already registered with this credentials so he is redirected
@@ -39,15 +41,31 @@ public final class Register {
                          */
                         LiveInfo.getInstance().setCurrentPage(HomePageNon.getInstance());
 
-
                         ObjectNode objectNode = objectMapper.createObjectNode();
                         objectNode.putPOJO("error", "Error");
                         objectNode.putPOJO("currentMoviesList", new ArrayList<>());
                         objectNode.putPOJO("currentUser", null);
                         output.addPOJO(objectNode);
-                        return;
+                        sw = true;
+                        break;
                     }
                 }
+            }
+            if (!sw) {
+                /**
+                 * We add an user with the new credentials and move on HomePage
+                 */
+                UsersInputData newOne = new UsersInputData(command.getCredentials());
+                Database.getInstance().getDatabaseUsers().add(newOne);
+                LiveInfo.getInstance().setCurrentUser(newOne);
+
+                LiveInfo.getInstance().setCurrentPage(HomePage.getInstance());
+
+                ObjectNode objectNode = objectMapper.createObjectNode();
+                objectNode.putPOJO("error", null);
+                objectNode.putPOJO("currentMoviesList", new ArrayList<>());
+                objectNode.putPOJO("currentUser", new UsersInputData(LiveInfo.getInstance().getCurrentUser()));
+                output.addPOJO(objectNode);
             }
         } else {
             ObjectNode objectNode = objectMapper.createObjectNode();
@@ -56,28 +74,5 @@ public final class Register {
             objectNode.putPOJO("currentUser", null);
             output.addPOJO(objectNode);
         }
-
-
-        /**
-         * We add an user with the new credentials and move on HomePage
-         */
-        users.add(new UsersInputData(command.getCredentials()));
-        LiveInfo.getInstance().setCurrentUser(new UsersInputData(command.getCredentials()));
-//        setCurrUser(new UsersInputData(command.getCredentials()));
-
-        LiveInfo.getInstance().setCurrentPage(HomePage.getInstance());
-
-        //setCurrPage(pageType.verifyType("HomePage"));
-        ObjectNode objectNode = objectMapper.createObjectNode();
-
-        objectNode.putPOJO("error", null);
-        objectNode.putPOJO("currentMoviesList", new ArrayList<>());
-        objectNode.putPOJO("currentUser", new UsersInputData(LiveInfo.getInstance().getCurrentUser()));
-        output.addPOJO(objectNode);
     }
-
-
-
-
-
 }

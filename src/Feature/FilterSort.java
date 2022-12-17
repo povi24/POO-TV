@@ -1,5 +1,6 @@
 package Feature;
 
+import Commands.CommandOnPage;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
@@ -7,6 +8,7 @@ import fileio.ActionsInputData;
 import fileio.FiltersInputData;
 import fileio.MoviesInputData;
 import fileio.UsersInputData;
+import helpers.Database;
 import helpers.LiveInfo;
 
 import java.util.ArrayList;
@@ -21,7 +23,7 @@ public final class FilterSort {
         ObjectMapper objectMapper = new ObjectMapper();
         if (LiveInfo.getInstance().getCurrentPage().getPageType().equals("movies")) {
 
-            ArrayList<MoviesInputData> allMovies = LiveInfo.getInstance().getCurrentMovieList();
+            ArrayList<MoviesInputData> allMovies = new ArrayList<>(Database.getInstance().getDatabaseMovies());
 
             System.out.println("in functia filterSort, sa imi printeze movies inainte de banare" + allMovies);
 
@@ -78,8 +80,10 @@ public final class FilterSort {
              * We print the correct movie list
              */
 
+            LiveInfo.getInstance().setCurrentMovieList(new ArrayList<>(moviesAfterSort));
+
             objectNode.putPOJO("error", null);
-            objectNode.putPOJO("currentMoviesList", new ArrayList<MoviesInputData>(moviesAfterSort));
+            objectNode.putPOJO("currentMoviesList", new ArrayList<>(moviesAfterSort));
             objectNode.putPOJO("currentUser", new UsersInputData(LiveInfo.getInstance().getCurrentUser()));
             output.addPOJO(objectNode);
 

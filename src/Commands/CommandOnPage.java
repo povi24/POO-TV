@@ -1,10 +1,6 @@
 package Commands;
 
-import Feature.Filter;
-import Feature.Login;
-import Feature.Logout;
-import Feature.Register;
-import Feature.Search;
+import Feature.*;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import fileio.ActionsInputData;
 import fileio.FiltersInputData;
@@ -25,10 +21,13 @@ public class CommandOnPage {
         return instance;
     }
 
+    private CommandOnPage() {
+    }
+
     public void onPage(final ActionsInputData command,
-                              final ArrayList<UsersInputData> users,
-                              final ArrayList<MoviesInputData> movies,
-                              final ArrayNode output) {
+                       final ArrayList<UsersInputData> users,
+                       final ArrayList<MoviesInputData> movies,
+                       final ArrayNode output) {
         System.out.println("ajunge macar pana aici?");
         System.out.println(command.getFeature());
 
@@ -54,13 +53,20 @@ public class CommandOnPage {
             Filter.filter(command, users, movies, output);
 
             System.out.println("care e lista mea de filme dupa ce efectuez actiune FILTER " + LiveInfo.getInstance().getCurrentMovieList());
+        } else if (command.getFeature().equals("purchase")) {
+            Purchase.purchase(command, users, movies, output);
+        } else if (command.getFeature().equals("watch")) {
+            Watch.watch(command, users, movies, output);
+        } else if (command.getFeature().equals("like")) {
+            Like.like(command, users, movies, output);
+        } else if (command.getFeature().equals("rate")) {
+            RateTheMovie.rate(command, users, movies, output);
+        } else if (command.getFeature().equals("buy premium account")) {
+            BuyPremiumAccount.buyPremiumAccounts(command, users, movies, output);
+        } else if (command.getFeature().equals("buy tokens")) {
+            BuyTokens.buyTokens(command, users, movies, output);
+        } else {
+            System.out.println("command.feature() inexistent");
         }
-
     }
-
-
-
-
-
-
 }

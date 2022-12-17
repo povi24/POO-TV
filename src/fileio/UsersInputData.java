@@ -101,32 +101,31 @@ public final class UsersInputData {
     }
 
 
-    public UsersInputData(final UsersInputData users) {
-        this.credentials = new CredentialsInputData(users.getCredentials());
+    public UsersInputData(final UsersInputData user) {
+        this.credentials = new CredentialsInputData(user.getCredentials());
 
         this.purchasedMovies = new ArrayList<>();
-        for (MoviesInputData movies : users.getPurchasedMovies()) {
+        for (MoviesInputData movies : user.getPurchasedMovies()) {
             this.purchasedMovies.add(new MoviesInputData(movies));
         }
 
         this.watchedMovies = new ArrayList<>();
-        for (MoviesInputData movies : users.getWatchedMovies()) {
+        for (MoviesInputData movies : user.getWatchedMovies()) {
             this.watchedMovies.add(new MoviesInputData(movies));
         }
 
         this.likedMovies = new ArrayList<>();
-        for (MoviesInputData movies : users.getLikedMovies()) {
+        for (MoviesInputData movies : user.getLikedMovies()) {
             this.likedMovies.add(new MoviesInputData(movies));
         }
 
         this.ratedMovies = new ArrayList<>();
-        for (MoviesInputData movies : users.getRatedMovies()) {
+        for (MoviesInputData movies : user.getRatedMovies()) {
             this.ratedMovies.add(new MoviesInputData(movies));
         }
 
-        this.tokensCount = users.getTokensCount();
-        this.numFreePremiumMovies = users.getNumFreePremiumMovies();
-
+        this.tokensCount = user.getTokensCount();
+        this.numFreePremiumMovies = user.getNumFreePremiumMovies();
     }
 
 //    public  UsersInputData(final UsersInputData users) {
