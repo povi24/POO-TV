@@ -1,7 +1,5 @@
 package fileio;
 
-import java.util.ArrayList;
-
 public final class FiltersInputData {
     private SortInputData sort;
     private ContainsInputData contains;
@@ -9,7 +7,6 @@ public final class FiltersInputData {
     public FiltersInputData() {
 
     }
-
     public SortInputData getSort() {
         return sort;
     }

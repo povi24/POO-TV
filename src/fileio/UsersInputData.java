@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * Information about an user, retrieved from parsing the input files
  */
 public final class UsersInputData {
-    private  CredentialsInputData credentials;
+    private CredentialsInputData credentials;
 
     private int tokensCount = 0;
     private int numFreePremiumMovies = Constants.NUM_OF_FREE_PREMIUM_MOVIES;
@@ -22,7 +22,7 @@ public final class UsersInputData {
     public UsersInputData() {
 
     }
-    public UsersInputData(CredentialsInputData credentials) {
+    public UsersInputData(final CredentialsInputData credentials) {
         this.credentials = new CredentialsInputData(credentials);
     }
 

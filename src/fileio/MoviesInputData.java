@@ -92,7 +92,7 @@ public final class MoviesInputData {
     public MoviesInputData(final String name, final int year, final int duration,
                            final ArrayList<String> genres, final ArrayList<String> actors,
                            final ArrayList<String> countriesBanned,
-                           int numLikes, int numRatings, int rating) {
+                           final int numLikes, final int numRatings, final int rating) {
         this.name = name;
         this.year = year;
         this.duration = duration;
@@ -117,7 +117,7 @@ public final class MoviesInputData {
     }
 
 
-    public void setRating(double rating) {
+    public void setRating(final double rating) {
         this.rating = rating;
     }
 
@@ -131,19 +131,8 @@ public final class MoviesInputData {
     }
 
     @JsonIgnore
-    public void setSumOfRating(double sumOfRating) {
+    public void setSumOfRating(final double sumOfRating) {
         this.sumOfRating = sumOfRating;
     }
-
-//    @Override
-//    public String toString() {
-//        return "MoviesInputData{"
-//                + "name'" + name + '\''
-//                + ", year=" + year
-//                + ", duration=" + duration
-//                + ", actors=" + actors
-//                + ", genres" +genres
-//                + '}';
-//    }
 
 }

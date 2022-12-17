@@ -6,7 +6,6 @@ public final class Input {
     /**
      * This class retrieves information from our input
      */
-
     private  ArrayList<UsersInputData> users;
     private  ArrayList<MoviesInputData> movies;
     private  ArrayList<ActionsInputData> actions;
